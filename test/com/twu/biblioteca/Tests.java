@@ -18,17 +18,37 @@ public class Tests {
     @Test
     public void ShouldReturnListOfBooks() {
         BibliotecaApp biblioapp = new BibliotecaApp();
-        ArrayList<String> bookArr = new ArrayList<String>();
-        bookArr.add("The Hobbit");
-        bookArr.add("The Hunger Games");
-        bookArr.add("Becoming");
-        assertEquals(bookArr, biblioapp.listBooks(bookArr));
+        ArrayList<Book> bookArr = new ArrayList<Book>();
+        bookArr.add(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
+        bookArr.add(new Book("The Hunger Games", "Suzanne Collins", 2008));
+        bookArr.add(new Book("Becoming", "Michelle Obama", 2018));
+        String bookList = "The Hobbit by J.R.R. Tolkien, Published 1937 \nThe Hunger Games by Suzanne Collins, Published 2008 \nBecoming by Michelle Obama, Published 2018 \n";
+        assertEquals(bookList, biblioapp.listBooks(bookArr));
     }
 
     @Test
     public void ShouldPlaceBookOnShelf() {
         BibliotecaApp biblioapp = new BibliotecaApp();
-        ArrayList<String> bookArr = new ArrayList<String>();
-        assertEquals(bookArr, biblioapp.placeBookOnShelf("The Great Gatsby", bookArr));
+        ArrayList<Book> bookArr = new ArrayList<Book>();
+        assertEquals(bookArr, biblioapp.placeBookOnShelf(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925)));
+    }
+
+    // 1.3
+    @Test
+    public void CheckBookName() {
+        Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
+        assertEquals("The Hobbit", book1.getName());
+    }
+
+    @Test
+    public void CheckBookAuthor() {
+        Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
+        assertEquals("J.R.R. Tolkien", book1.getAuthor());
+    }
+
+    @Test
+    public void CheckBookPublicationDate() {
+        Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
+        assertEquals(1937, book1.getPublicationDate());
     }
 }

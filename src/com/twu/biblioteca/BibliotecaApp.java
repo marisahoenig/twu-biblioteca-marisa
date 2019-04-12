@@ -3,14 +3,16 @@ import java.util.ArrayList;
 
 public class BibliotecaApp {
 
+    public static ArrayList<Book> bookList = new ArrayList<Book>();
+
     public static void main(String[] args) {
         System.out.println(Welcome());
 
-        ArrayList<String> bookArr = new ArrayList<String>();
-        placeBookOnShelf("The Hobbit", bookArr);
-        placeBookOnShelf("The Hunger Games", bookArr);
-        placeBookOnShelf("Becoming", bookArr);
-        System.out.println(listBooks(bookArr));
+        placeBookOnShelf(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
+        placeBookOnShelf(new Book("The Hunger Games", "Suzanne Collins", 2008));
+        placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));
+
+        System.out.println(listBooks(bookList));
 
     }
 
@@ -18,12 +20,17 @@ public class BibliotecaApp {
         return "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!";
     }
 
-    public static ArrayList<String> listBooks(ArrayList<String> bookArr) {
-        return bookArr;
+    public static String listBooks(ArrayList<Book> bookArr) {
+        String bookString = "";
+        for (Book book : bookArr) {
+            bookString += book.toString() + "\n";
+        }
+        return bookString;
     }
 
-    public static ArrayList<String> placeBookOnShelf(String book, ArrayList<String> bookArr) {
-        bookArr.add(book);
-        return bookArr;
+    public static ArrayList<Book> placeBookOnShelf(Book book) {
+        bookList.add(book);
+        return bookList;
     }
+
 }
