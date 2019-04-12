@@ -25,6 +25,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return getName() + " by " + getAuthor() + ", Published " + getPublicationDate();
+        return String.format("|%-20s", getName()) + String.format("%-20s", getAuthor()) + String.format("%-20s|", getPublicationDate());
+//        return getName() + " by " + getAuthor() + ", Published " + getPublicationDate();
     }
 }

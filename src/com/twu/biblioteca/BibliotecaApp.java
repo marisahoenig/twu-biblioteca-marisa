@@ -6,12 +6,13 @@ public class BibliotecaApp {
     public static ArrayList<Book> bookList = new ArrayList<Book>();
 
     public static void main(String[] args) {
-        System.out.println(Welcome());
+        System.out.println(Welcome() + "\n");
 
         placeBookOnShelf(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
         placeBookOnShelf(new Book("The Hunger Games", "Suzanne Collins", 2008));
         placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));
 
+        System.out.println(String.format("%-20s", "Book Title") + String.format("%-20s", "Author") + String.format("%-20s", "Publication Date"));
         System.out.println(listBooks(bookList));
 
     }
@@ -24,6 +25,9 @@ public class BibliotecaApp {
         String bookString = "";
         for (Book book : bookArr) {
             bookString += book.toString() + "\n";
+
+//            String bookDetails = String.format("|%20s|", book.toString());
+//            bookString += bookDetails + "\n";
         }
         return bookString;
     }

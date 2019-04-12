@@ -22,8 +22,11 @@ public class Tests {
         bookArr.add(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
         bookArr.add(new Book("The Hunger Games", "Suzanne Collins", 2008));
         bookArr.add(new Book("Becoming", "Michelle Obama", 2018));
-        String bookList = "The Hobbit by J.R.R. Tolkien, Published 1937\nThe Hunger Games by Suzanne Collins, Published 2008\nBecoming by Michelle Obama, Published 2018\n";
-        assertEquals(bookList, biblioapp.listBooks(bookArr));
+        String booksInOrder = "";
+        for (Book book : bookArr) {
+            booksInOrder += book.toString() + "\n";
+        }
+        assertEquals(booksInOrder, biblioapp.listBooks(bookArr));
     }
 
     @Test
