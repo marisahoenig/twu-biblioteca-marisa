@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+
 
 public class BibliotecaApp {
 
@@ -8,13 +11,36 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         System.out.println(Welcome() + "\n");
 
-        placeBookOnShelf(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
-        placeBookOnShelf(new Book("The Hunger Games", "Suzanne Collins", 2008));
-        placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));
+        System.out.println("Menu" + "\n");
 
-        System.out.println(String.format("%-20s", "Book Title") + String.format("%-20s", "Author") + String.format("%-20s", "Publication Date"));
-        System.out.println(listBooks(bookList));
+        System.out.println("1 - List of Books");
+        askForInput();
+    }
 
+    public static void askForInput() {
+        Scanner keyboard = new Scanner(System.in);
+        int menuOption = keyboard.nextInt();
+        selectOption(menuOption);
+    }
+
+    public static void selectOption(int menuOption) {
+        try {
+            validateInput(menuOption);
+            if (menuOption == 1) {
+                BookList();
+            }
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            askForInput();
+        }
+    }
+
+    public static boolean validateInput(int menuOption) throws IllegalArgumentException {
+        if (menuOption == 1) {
+            return true;
+        } else {
+            throw new IllegalArgumentException("Please select a valid option!");
+        }
     }
 
     public static String Welcome() {
@@ -25,9 +51,6 @@ public class BibliotecaApp {
         String bookString = "";
         for (Book book : bookArr) {
             bookString += book.toString() + "\n";
-
-//            String bookDetails = String.format("|%20s|", book.toString());
-//            bookString += bookDetails + "\n";
         }
         return bookString;
     }
@@ -35,6 +58,15 @@ public class BibliotecaApp {
     public static ArrayList<Book> placeBookOnShelf(Book book) {
         bookList.add(book);
         return bookList;
+    }
+
+    public static void BookList() {
+        placeBookOnShelf(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
+        placeBookOnShelf(new Book("The Hunger Games", "Suzanne Collins", 2008));
+        placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));
+
+        System.out.println(String.format("%-20s", "Book Title") + String.format("%-20s", "Author") + String.format("%-20s", "Publication Date"));
+        System.out.println(listBooks(bookList));
     }
 
 }

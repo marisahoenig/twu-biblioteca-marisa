@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
-public class Tests {
+public class ShopTests {
 
     // 1.1
     @Test
@@ -35,22 +35,11 @@ public class Tests {
         assertEquals(biblioapp.bookList, biblioapp.placeBookOnShelf(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925)));
     }
 
-    // 1.3
+    // 1.4
     @Test
-    public void CheckBookName() {
-        Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        assertEquals("The Hobbit", book1.getName());
-    }
-
-    @Test
-    public void CheckBookAuthor() {
-        Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        assertEquals("J.R.R. Tolkien", book1.getAuthor());
-    }
-
-    @Test
-    public void CheckBookPublicationDate() {
-        Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        assertEquals(1937, book1.getPublicationDate());
+    public void checkMenuOptionInput() {
+        int input = 1;
+        BibliotecaApp biblioapp = new BibliotecaApp();
+        biblioapp.validateInput(input);
     }
 }
