@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -18,9 +19,15 @@ public class BibliotecaApp {
     }
 
     public static void askForInput() {
-        Scanner keyboard = new Scanner(System.in);
-        int menuOption = keyboard.nextInt();
-        selectOption(menuOption);
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            int menuOption = keyboard.nextInt();
+            selectOption(menuOption);
+        } catch (InputMismatchException e) {
+            System.out.println("Please select a valid option!");
+            askForInput();
+        }
+
     }
 
     public static void selectOption(int menuOption) {
@@ -29,8 +36,8 @@ public class BibliotecaApp {
             if (menuOption == 1) {
                 BookList();
             }
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             askForInput();
         }
     }
