@@ -22,15 +22,14 @@ public class Tests {
         bookArr.add(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
         bookArr.add(new Book("The Hunger Games", "Suzanne Collins", 2008));
         bookArr.add(new Book("Becoming", "Michelle Obama", 2018));
-        String bookList = "The Hobbit by J.R.R. Tolkien, Published 1937 \nThe Hunger Games by Suzanne Collins, Published 2008 \nBecoming by Michelle Obama, Published 2018 \n";
+        String bookList = "The Hobbit by J.R.R. Tolkien, Published 1937\nThe Hunger Games by Suzanne Collins, Published 2008\nBecoming by Michelle Obama, Published 2018\n";
         assertEquals(bookList, biblioapp.listBooks(bookArr));
     }
 
     @Test
     public void ShouldPlaceBookOnShelf() {
         BibliotecaApp biblioapp = new BibliotecaApp();
-        ArrayList<Book> bookArr = new ArrayList<Book>();
-        assertEquals(bookArr, biblioapp.placeBookOnShelf(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925)));
+        assertEquals(biblioapp.bookList, biblioapp.placeBookOnShelf(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925)));
     }
 
     // 1.3
