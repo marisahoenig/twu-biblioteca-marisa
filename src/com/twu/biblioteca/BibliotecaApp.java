@@ -1,4 +1,5 @@
 package com.twu.biblioteca;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,6 +8,9 @@ public class BibliotecaApp {
     public static Scanner keyboard = new Scanner(System.in);
 
     public static ArrayList<Book> bookList = new ArrayList<Book>();
+    public static ArrayList<Book> checkedOutBookList = new ArrayList<Book>();
+
+    public static String checkoutReturnToggle = ""; //empty string when neither
 
     public static void main(String[] args) {
         System.out.println(Welcome() + "\n");
@@ -45,6 +49,7 @@ public class BibliotecaApp {
     public static void validateInput(String menuOption) throws IllegalArgumentException {
         if (menuOption.equals("1")) {
             listBooks(bookList);
+            populateMenu();
         } else if (menuOption.equals("2")) {
             promptForCheckoutBook();
         } else if (menuOption.equals("3")) {
@@ -78,9 +83,20 @@ public class BibliotecaApp {
     }
 
     public static void promptForCheckoutBook() {
+        checkoutReturnToggle = "checkout";
         listBooks(bookList);
         System.out.println("Which book would you like to checkout?");
-        askForBookInput();
+        String bookChoice = askForBookInput();
+
+        boolean validBook = checkoutBook(bookChoice);
+        if (validBook) {
+            System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
+            listBooks(bookList);
+            populateMenu();
+        } else {
+            System.out.println("Sorry, that book is not available. Please try a different title or type '0' to return to the menu.");
+            askForBookInput();
+        }
     }
 
     // return whether or not the requested book can be checked out
@@ -88,32 +104,47 @@ public class BibliotecaApp {
         for (Book b : bookList) {
             if (b.getName().equals(bookName)) {
                 bookList.remove(b);
+                checkedOutBookList.add(b);
                 return true;
             }
         }
         return false;
     }
 
-    public static void askForBookInput() {
+    public static String askForBookInput() {
         String bookChoice = keyboard.nextLine();
         if (bookChoice.equals("0")) {
             populateMenu();
-        } else {
-            boolean validBook = checkoutBook(bookChoice);
-            if (validBook) {
-                System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
-                listBooks(bookList);
-            } else {
-                System.out.println("Sorry, that book is not available. Please try a different title or type '0' to return to the menu.");
-                askForBookInput();
-            }
         }
+        return bookChoice;
     }
 
     public static void promptForReturnBook() {
         listBooks(bookList);
         System.out.println("Which book would you like to return?");
-//        askForBookInput();
+        String bookChoice = askForBookInput();
+
+        boolean validBook = returnBook(bookChoice);
+        if (validBook) {
+            System.out.println("Thank you for returning " + bookChoice + "!");
+            listBooks(bookList);
+            populateMenu();
+        } else {
+            System.out.println("Sorry, that is not a valid book to return. Please try a different title or type '0' to return to the menu.");
+            askForBookInput();
+        }
+
+    }
+
+    public static boolean returnBook(String bookName) {
+        for (Book b : checkedOutBookList) {
+            if (b.getName().equals(bookName)) {
+                checkedOutBookList.remove(b);
+                bookList.add(b);
+                return true;
+            }
+        }
+        return false;
     }
 
 }

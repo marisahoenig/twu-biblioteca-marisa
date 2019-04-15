@@ -92,6 +92,7 @@ public class ShopTests {
     public void SizeOfBookListShouldIncreaseByOne() {
         BibliotecaApp biblioapp = new BibliotecaApp();
         biblioapp.stockBooks();
+        biblioapp.checkoutBook("The Hobbit");
         int originalNumberOfBooks = biblioapp.bookList.size();
         biblioapp.returnBook("The Hobbit");
         int newNumberOfBooks = biblioapp.bookList.size();
