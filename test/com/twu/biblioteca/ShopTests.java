@@ -73,4 +73,28 @@ public class ShopTests {
         int newNumberOfBooks = biblioapp.bookList.size();
         assertEquals(1, originalNumberOfBooks - newNumberOfBooks);
     }
+
+    @Test
+    public void ShouldShowReturnedBookInList() {
+        BibliotecaApp biblioapp = new BibliotecaApp();
+        biblioapp.stockBooks();
+        Book bookToReturn = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
+        biblioapp.returnBook(bookToReturn.getName());
+        for (Book book : biblioapp.bookList) {
+            if ((book.getName()).equals(bookToReturn.getName())) {
+                assertEquals("The Hobbit", book.getName());
+            }
+        }
+
+    }
+
+    @Test
+    public void SizeOfBookListShouldIncreaseByOne() {
+        BibliotecaApp biblioapp = new BibliotecaApp();
+        biblioapp.stockBooks();
+        int originalNumberOfBooks = biblioapp.bookList.size();
+        biblioapp.returnBook("The Hobbit");
+        int newNumberOfBooks = biblioapp.bookList.size();
+        assertEquals(1, newNumberOfBooks - originalNumberOfBooks);
+    }
 }
