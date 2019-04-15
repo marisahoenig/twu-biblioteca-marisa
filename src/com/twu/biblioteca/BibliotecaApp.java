@@ -19,7 +19,7 @@ public class BibliotecaApp {
     }
 
     public static void askForInput() {
-        String menuOption = keyboard.next();
+        String menuOption = keyboard.nextLine();
         selectOption(menuOption);
     }
 
@@ -50,11 +50,13 @@ public class BibliotecaApp {
     }
 
     public static void askForBookInput() {
-        String bookChoice = keyboard.next();
+        String bookChoice = keyboard.nextLine();
         boolean validBook = checkoutBook(bookChoice);
         if (validBook) {
-            System.out.println("Thank you! Enjoy the book!");
+            System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
             System.out.println(listBooks(bookList));
+        } else {
+            System.out.println("Sorry, that book is not available.");
         }
 
     }
