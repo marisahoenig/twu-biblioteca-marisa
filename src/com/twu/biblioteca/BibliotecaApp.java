@@ -26,7 +26,7 @@ public class BibliotecaApp {
         try {
             validateInput(menuOption);
             if (Integer.parseInt(menuOption) == 1) {
-                BookList();
+                stockBooks();
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -62,7 +62,7 @@ public class BibliotecaApp {
         return bookList;
     }
 
-    public static void BookList() {
+    public static void stockBooks() {
         placeBookOnShelf(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
         placeBookOnShelf(new Book("The Hunger Games", "Suzanne Collins", 2008));
         placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));

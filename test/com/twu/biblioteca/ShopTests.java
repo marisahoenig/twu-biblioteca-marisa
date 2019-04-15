@@ -55,10 +55,12 @@ public class ShopTests {
         biblioapp.validateInput(inputString);
     }
 
-    @Test (expected = InputMismatchException.class)
-        public void ShouldThrowInputMismatchWhenInvalidTypeEntered() {
-        String input = "book";
+    // 1.7
+
+    @Test
+    public void ShouldCheckOutBook() {
         BibliotecaApp biblioapp = new BibliotecaApp();
-        biblioapp.validateInput(input);
+        biblioapp.stockBooks();
+
     }
 }
