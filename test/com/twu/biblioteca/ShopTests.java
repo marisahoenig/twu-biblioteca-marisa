@@ -62,6 +62,15 @@ public class ShopTests {
         BibliotecaApp biblioapp = new BibliotecaApp();
         biblioapp.stockBooks();
         Assert.assertTrue(biblioapp.checkoutBook("The Hobbit"));
+    }
 
+    @Test
+    public void SizeOfBookListShouldDecreaseByOne() {
+        BibliotecaApp biblioapp = new BibliotecaApp();
+        biblioapp.stockBooks();
+        int originalNumberOfBooks = biblioapp.bookList.size();
+        biblioapp.checkoutBook("The Hobbit");
+        int newNumberOfBooks = biblioapp.bookList.size();
+        assertEquals(1, originalNumberOfBooks - newNumberOfBooks);
     }
 }
