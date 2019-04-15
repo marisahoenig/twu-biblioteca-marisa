@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
-
 import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
 
@@ -61,6 +61,7 @@ public class ShopTests {
     public void ShouldCheckOutBook() {
         BibliotecaApp biblioapp = new BibliotecaApp();
         biblioapp.stockBooks();
+        Assert.assertTrue(biblioapp.checkoutBook("The Hobbit"));
 
     }
 }

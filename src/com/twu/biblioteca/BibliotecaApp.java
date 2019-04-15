@@ -14,6 +14,7 @@ public class BibliotecaApp {
         System.out.println("Menu" + "\n");
 
         System.out.println("1 - List of Books");
+        System.out.println("2 - Checkout a Book");
         askForInput();
     }
 
@@ -34,12 +35,12 @@ public class BibliotecaApp {
         }
     }
 
-    public static boolean validateInput(String menuOption) throws IllegalArgumentException {
+    public static void validateInput(String menuOption) throws IllegalArgumentException {
         if (menuOption.equals("1")) {
-            return true;
+        } else if (menuOption.equals("2")) {
+            askForInput();
         } else if (menuOption.equals("0")) {
             keyboard.close();
-            return true;
         } else {
             throw new IllegalArgumentException("Please select a valid option!");
         }
@@ -69,6 +70,17 @@ public class BibliotecaApp {
 
         System.out.println(String.format("%-20s", "Book Title") + String.format("%-20s", "Author") + String.format("%-20s", "Publication Date"));
         System.out.println(listBooks(bookList));
+    }
+
+    // return whether or not the requested book can be checked out
+    public static boolean checkoutBook(String bookName) {
+        for (Book b : bookList) {
+            if (b.getName() == bookName) {
+                bookList.remove(b);
+                return true;
+            }
+        }
+        return false;
     }
 
 }
