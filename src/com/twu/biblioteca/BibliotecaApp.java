@@ -47,32 +47,12 @@ public class BibliotecaApp {
             listBooks(bookList);
         } else if (menuOption.equals("2")) {
             promptForCheckoutBook();
+        } else if (menuOption.equals("3")) {
+            promptForReturnBook();
         } else if (menuOption.equals("0")) {
             keyboard.close();
         } else {
             throw new IllegalArgumentException("Please select a valid option!");
-        }
-    }
-
-    public static void promptForCheckoutBook() {
-        listBooks(bookList);
-        System.out.println("Which book would you like to checkout?");
-        askForBookInput();
-    }
-
-    public static void askForBookInput() {
-        String bookChoice = keyboard.nextLine();
-        if (bookChoice.equals("0")) {
-            populateMenu();
-        } else {
-            boolean validBook = checkoutBook(bookChoice);
-            if (validBook) {
-                System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
-                listBooks(bookList);
-            } else {
-                System.out.println("Sorry, that book is not available. Please try a different title or type '0' to return to the menu.");
-                askForBookInput();
-            }
         }
     }
 
@@ -97,6 +77,12 @@ public class BibliotecaApp {
         placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));
     }
 
+    public static void promptForCheckoutBook() {
+        listBooks(bookList);
+        System.out.println("Which book would you like to checkout?");
+        askForBookInput();
+    }
+
     // return whether or not the requested book can be checked out
     public static boolean checkoutBook(String bookName) {
         for (Book b : bookList) {
@@ -106,6 +92,28 @@ public class BibliotecaApp {
             }
         }
         return false;
+    }
+
+    public static void askForBookInput() {
+        String bookChoice = keyboard.nextLine();
+        if (bookChoice.equals("0")) {
+            populateMenu();
+        } else {
+            boolean validBook = checkoutBook(bookChoice);
+            if (validBook) {
+                System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
+                listBooks(bookList);
+            } else {
+                System.out.println("Sorry, that book is not available. Please try a different title or type '0' to return to the menu.");
+                askForBookInput();
+            }
+        }
+    }
+
+    public static void promptForReturnBook() {
+        listBooks(bookList);
+        System.out.println("Which book would you like to return?");
+//        askForBookInput();
     }
 
 }
