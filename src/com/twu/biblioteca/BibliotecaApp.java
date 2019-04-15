@@ -56,7 +56,8 @@ public class BibliotecaApp {
             System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
             System.out.println(listBooks(bookList));
         } else {
-            System.out.println("Sorry, that book is not available.");
+            System.out.println("Sorry, that book is not available. Please try a different title.");
+            askForBookInput();
         }
 
     }
