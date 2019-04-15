@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
-
 public class BibliotecaApp {
+
+    public static Scanner keyboard = new Scanner(System.in);
 
     public static ArrayList<Book> bookList = new ArrayList<Book>();
 
@@ -19,21 +19,14 @@ public class BibliotecaApp {
     }
 
     public static void askForInput() {
-        try {
-            Scanner keyboard = new Scanner(System.in);
-            int menuOption = keyboard.nextInt();
-            selectOption(menuOption);
-        } catch (InputMismatchException e) {
-            System.out.println("Please select a valid option!");
-            askForInput();
-        }
-
+        String menuOption = keyboard.nextLine();
+        selectOption(menuOption);
     }
 
-    public static void selectOption(int menuOption) {
+    public static void selectOption(String menuOption) {
         try {
             validateInput(menuOption);
-            if (menuOption == 1) {
+            if (Integer.parseInt(menuOption) == 1) {
                 BookList();
             }
         } catch (IllegalArgumentException e) {
@@ -42,10 +35,14 @@ public class BibliotecaApp {
         }
     }
 
-    public static boolean validateInput(int menuOption) throws IllegalArgumentException {
-        if (menuOption == 1) {
+    public static boolean validateInput(String menuOption) throws IllegalArgumentException {
+        if (Integer.parseInt(menuOption) == 1) {
+            return true;
+        } else if (menuOption.equals("x")) {
+            keyboard.close();
             return true;
         } else {
+            System.out.println(menuOption);
             throw new IllegalArgumentException("Please select a valid option!");
         }
     }

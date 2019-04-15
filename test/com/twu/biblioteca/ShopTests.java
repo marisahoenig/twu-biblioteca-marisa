@@ -1,8 +1,11 @@
 package com.twu.biblioteca;
 
 
+import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+
 import static org.junit.Assert.assertEquals;
 
 public class ShopTests {
@@ -37,12 +40,25 @@ public class ShopTests {
 
     // 1.4
     @Test
-    public void checkMenuOptionInput() {
+    public void ShouldReturnValidMenuInput() {
         int input = 1;
+        String inputString = String.valueOf(input);
+        BibliotecaApp biblioapp = new BibliotecaApp();
+        biblioapp.validateInput(inputString);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void ShouldThrowIllegalArgWhenInvalidNumberEntered() {
+        int input = 100000;
+        String inputString = String.valueOf(input);
+        BibliotecaApp biblioapp = new BibliotecaApp();
+        biblioapp.validateInput(inputString);
+    }
+
+    @Test (expected = InputMismatchException.class)
+        public void ShouldThrowInputMismatchWhenInvalidTypeEntered() {
+        String input = "book";
         BibliotecaApp biblioapp = new BibliotecaApp();
         biblioapp.validateInput(input);
     }
-
-//    @Test
-//    public void
 }
