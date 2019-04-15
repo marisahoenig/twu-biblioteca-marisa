@@ -10,11 +10,21 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         System.out.println(Welcome() + "\n");
+        stockBooks();
+        populateMenu();
+    }
 
+    public static String Welcome() {
+        return "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!";
+    }
+
+    public static void populateMenu() {
         System.out.println("Menu" + "\n");
+        System.out.println("Please type the number associated with the option you'd like to select.");
 
         System.out.println("1 - List of Books");
         System.out.println("2 - Checkout a Book");
+        System.out.println("3 - Return a Book");
         askForInput();
     }
 
@@ -25,7 +35,6 @@ public class BibliotecaApp {
 
     public static void selectOption(String menuOption) {
         try {
-            stockBooks();
             validateInput(menuOption);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -35,6 +44,7 @@ public class BibliotecaApp {
 
     public static void validateInput(String menuOption) throws IllegalArgumentException {
         if (menuOption.equals("1")) {
+            listBooks(bookList);
         } else if (menuOption.equals("2")) {
             promptForCheckoutBook();
         } else if (menuOption.equals("0")) {
@@ -45,25 +55,25 @@ public class BibliotecaApp {
     }
 
     public static void promptForCheckoutBook() {
+        listBooks(bookList);
         System.out.println("Which book would you like to checkout?");
         askForBookInput();
     }
 
     public static void askForBookInput() {
         String bookChoice = keyboard.nextLine();
-        boolean validBook = checkoutBook(bookChoice);
-        if (validBook) {
-            System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
-            System.out.println(listBooks(bookList));
+        if (bookChoice.equals("0")) {
+            populateMenu();
         } else {
-            System.out.println("Sorry, that book is not available. Please try a different title.");
-            askForBookInput();
+            boolean validBook = checkoutBook(bookChoice);
+            if (validBook) {
+                System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
+                listBooks(bookList);
+            } else {
+                System.out.println("Sorry, that book is not available. Please try a different title or type '0' to return to the menu.");
+                askForBookInput();
+            }
         }
-
-    }
-
-    public static String Welcome() {
-        return "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!";
     }
 
     public static String listBooks(ArrayList<Book> bookArr) {
@@ -71,6 +81,8 @@ public class BibliotecaApp {
         for (Book book : bookArr) {
             bookString += book.toString() + "\n";
         }
+        System.out.println(String.format("%-20s", "Book Title") + String.format("%-20s", "Author") + String.format("%-20s", "Publication Date"));
+        System.out.println(bookString);
         return bookString;
     }
 
@@ -83,9 +95,6 @@ public class BibliotecaApp {
         placeBookOnShelf(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
         placeBookOnShelf(new Book("The Hunger Games", "Suzanne Collins", 2008));
         placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));
-
-        System.out.println(String.format("%-20s", "Book Title") + String.format("%-20s", "Author") + String.format("%-20s", "Publication Date"));
-        System.out.println(listBooks(bookList));
     }
 
     // return whether or not the requested book can be checked out
