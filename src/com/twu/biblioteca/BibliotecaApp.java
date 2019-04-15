@@ -25,10 +25,8 @@ public class BibliotecaApp {
 
     public static void selectOption(String menuOption) {
         try {
+            stockBooks();
             validateInput(menuOption);
-            if (Integer.parseInt(menuOption) == 1) {
-                stockBooks();
-            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             askForInput();
@@ -38,12 +36,27 @@ public class BibliotecaApp {
     public static void validateInput(String menuOption) throws IllegalArgumentException {
         if (menuOption.equals("1")) {
         } else if (menuOption.equals("2")) {
-            askForInput();
+            promptForCheckoutBook();
         } else if (menuOption.equals("0")) {
             keyboard.close();
         } else {
             throw new IllegalArgumentException("Please select a valid option!");
         }
+    }
+
+    public static void promptForCheckoutBook() {
+        System.out.println("Which book would you like to checkout?");
+        askForBookInput();
+    }
+
+    public static void askForBookInput() {
+        String bookChoice = keyboard.next();
+        boolean validBook = checkoutBook(bookChoice);
+        if (validBook) {
+            System.out.println("Thank you! Enjoy the book!");
+            System.out.println(listBooks(bookList));
+        }
+
     }
 
     public static String Welcome() {
@@ -75,7 +88,7 @@ public class BibliotecaApp {
     // return whether or not the requested book can be checked out
     public static boolean checkoutBook(String bookName) {
         for (Book b : bookList) {
-            if (b.getName() == bookName) {
+            if (b.getName().equals(bookName)) {
                 bookList.remove(b);
                 return true;
             }
