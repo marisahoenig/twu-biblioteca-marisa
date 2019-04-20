@@ -3,7 +3,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BibliotecaApp {
+public class Library {
 
     public static Scanner keyboard = new Scanner(System.in);
 
@@ -56,6 +56,8 @@ public class BibliotecaApp {
             promptForReturnBook();
         } else if (menuOption.equals("0")) {
             keyboard.close();
+        } else if (menuOption.equals("exit")) {
+            keyboard.close();
         } else {
             throw new IllegalArgumentException("Please select a valid option!");
         }
@@ -64,16 +66,15 @@ public class BibliotecaApp {
     public static String listBooks(ArrayList<Book> bookArr) {
         String bookString = "";
         for (Book book : bookArr) {
-            bookString += book.toString() + "\n";
+            bookString += Printer.printBook(book) + "\n";
         }
-        System.out.println(String.format("%-20s", "Book Title") + String.format("%-20s", "Author") + String.format("%-20s", "Publication Date"));
+        System.out.println(Printer.print("Book Title", "Author", "Publication Date"));
         System.out.println(bookString);
         return bookString;
     }
 
-    public static ArrayList<Book> placeBookOnShelf(Book book) {
+    public static void placeBookOnShelf(Book book) {
         bookList.add(book);
-        return bookList;
     }
 
     public static void stockBooks() {
@@ -91,11 +92,10 @@ public class BibliotecaApp {
         boolean validBook = checkoutBook(bookChoice);
         if (validBook) {
             System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
-            listBooks(bookList);
             populateMenu();
         } else {
-            System.out.println("Sorry, that book is not available. Please try a different title or type '0' to return to the menu.");
-            askForBookInput();
+            System.out.println("Sorry, that book is not available. Please try a different title, type '0' to return to the menu, or type 'exit' to leave.");
+            promptForCheckoutBook();
         }
     }
 
@@ -127,11 +127,10 @@ public class BibliotecaApp {
         boolean validBook = returnBook(bookChoice);
         if (validBook) {
             System.out.println("Thank you for returning " + bookChoice + "!");
-            listBooks(bookList);
             populateMenu();
         } else {
             System.out.println("Sorry, that is not a valid book to return. Please try a different title or type '0' to return to the menu.");
-            askForBookInput();
+            promptForReturnBook();
         }
 
     }
