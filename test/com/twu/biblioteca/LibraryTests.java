@@ -76,10 +76,10 @@ public class LibraryTests {
         Library library = new Library();
         library.stockCurrentBooks();
         Book bookToReturn = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        library.returnBook(bookToReturn.getName());
+        library.returnBook(bookToReturn.getTitle());
         for (Book book : library.bookList) {
-            if ((book.getName()).equals(bookToReturn.getName())) {
-                assertEquals("The Hobbit", book.getName());
+            if ((book.getTitle()).equals(bookToReturn.getTitle())) {
+                assertEquals("The Hobbit", book.getTitle());
             }
         }
 

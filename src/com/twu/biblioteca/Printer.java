@@ -13,7 +13,7 @@ public class Printer {
     }
 
     public static String returnBookInfo(Book book) {
-        return returnColumns(book.getName(), book.getAuthor(), String.valueOf(book.getPublicationDate()));
+        return returnColumns(book.getTitle(), book.getAuthor(), String.valueOf(book.getPublicationDate()));
     }
 
     public static void printBooksList(ArrayList<Book> bookArr) {

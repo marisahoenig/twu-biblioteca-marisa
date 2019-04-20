@@ -10,7 +10,7 @@ public class BookTests {
     @Test
     public void CheckBookName() {
         Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        assertEquals("The Hobbit", book1.getName());
+        assertEquals("The Hobbit", book1.getTitle());
     }
 
     @Test

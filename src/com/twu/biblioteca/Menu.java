@@ -19,6 +19,15 @@ public class Menu {
         return userInput;
     }
 
+    public static void selectOption(String menuOption) {
+        try {
+            validateInput(menuOption);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            askForUserInput();
+        }
+    }
+
     public static void validateInput(String menuOption) throws IllegalArgumentException {
         if (menuOption.equals("1")) {
             listBooks(bookList);
@@ -31,15 +40,6 @@ public class Menu {
             keyboard.close(); //system.exit
         } else {
             throw new IllegalArgumentException("Please select a valid option!");
-        }
-    }
-
-    public static void selectOption(String menuOption) {
-        try {
-            validateInput(menuOption);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            askForUserInput();
         }
     }
 

@@ -1,18 +1,18 @@
 package com.twu.biblioteca;
 
 public class Book {
-    private String name;
+    private String title;
     private String author;
     private int publicationDate;
 
-    public Book(String name, String author, int publicationDate) {
-        this.name = name;
+    public Book(String title, String author, int publicationDate) {
+        this.title = title;
         this.author = author;
         this.publicationDate = publicationDate;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public String getAuthor() {
