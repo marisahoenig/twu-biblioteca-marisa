@@ -26,7 +26,7 @@ public class LibraryTests {
         for (Book book : bookArr) {
             booksInOrder += book.toString() + "\n";
         }
-        assertEquals(booksInOrder, library.listBooks(bookArr));
+        assertEquals(booksInOrder, library.printBooksList(bookArr));
     }
 
 //    @Test
@@ -57,14 +57,14 @@ public class LibraryTests {
     @Test
     public void ShouldCheckOutBook() {
         Library library = new Library();
-        library.stockBooks();
+        library.stockCurrentBooks();
 
     }
 
     @Test
     public void SizeOfBookListShouldDecreaseByOne() {
         Library library = new Library();
-        library.stockBooks();
+        library.stockCurrentBooks();
         int originalNumberOfBooks = library.bookList.size();
         library.checkoutBook("The Hobbit");
         int newNumberOfBooks = library.bookList.size();
@@ -74,7 +74,7 @@ public class LibraryTests {
     @Test
     public void ShouldShowReturnedBookInList() {
         Library library = new Library();
-        library.stockBooks();
+        library.stockCurrentBooks();
         Book bookToReturn = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
         library.returnBook(bookToReturn.getName());
         for (Book book : library.bookList) {
@@ -88,7 +88,7 @@ public class LibraryTests {
     @Test
     public void SizeOfBookListShouldIncreaseByOne() {
         Library library = new Library();
-        library.stockBooks();
+        library.stockCurrentBooks();
         library.checkoutBook("The Hobbit");
         int originalNumberOfBooks = library.bookList.size();
         library.returnBook("The Hobbit");
