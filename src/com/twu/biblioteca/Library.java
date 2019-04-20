@@ -56,8 +56,6 @@ public class Library {
             promptForReturnBook();
         } else if (menuOption.equals("0")) {
             keyboard.close();
-        } else if (menuOption.equals("exit")) {
-            keyboard.close();
         } else {
             throw new IllegalArgumentException("Please select a valid option!");
         }
@@ -94,7 +92,7 @@ public class Library {
             System.out.println("Thank you for checking out " + bookChoice + "! Enjoy the book!");
             populateMenu();
         } else {
-            System.out.println("Sorry, that book is not available. Please try a different title, type '0' to return to the menu, or type 'exit' to leave.");
+            System.out.println("Sorry, that book is not available. Please try a different title or type '0' to return to the menu");
             promptForCheckoutBook();
         }
     }

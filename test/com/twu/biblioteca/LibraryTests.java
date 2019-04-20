@@ -10,14 +10,14 @@ public class LibraryTests {
     // 1.1
     @Test
     public void ShouldReturnWelcomeStatementWhenProgramRuns() {
-        Library biblioapp = new Library();
-        assertEquals("Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!", biblioapp.Welcome());
+        Library library = new Library();
+        assertEquals("Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!", library.Welcome());
     }
 
     // 1.2
     @Test
     public void ShouldReturnListOfBooks() {
-        Library biblioapp = new Library();
+        Library library = new Library();
         ArrayList<Book> bookArr = new ArrayList<Book>();
         bookArr.add(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
         bookArr.add(new Book("The Hunger Games", "Suzanne Collins", 2008));
@@ -26,58 +26,58 @@ public class LibraryTests {
         for (Book book : bookArr) {
             booksInOrder += book.toString() + "\n";
         }
-        assertEquals(booksInOrder, biblioapp.listBooks(bookArr));
+        assertEquals(booksInOrder, library.listBooks(bookArr));
     }
 
 //    @Test
 //    public void ShouldPlaceBookOnShelf() {
-//        Library biblioapp = new Library();
-//        assertEquals(biblioapp.bookList, biblioapp.placeBookOnShelf(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925)));
+//        Library library = new Library();
+//        assertEquals(library.bookList, library.placeBookOnShelf(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925)));
 //    }
 
     // 1.4
-    @Test
-    public void ShouldReturnValidMenuInput() {
-        int input = 1;
-        String inputString = String.valueOf(input);
-        Library biblioapp = new Library();
-        biblioapp.validateInput(inputString);
-    }
+//    @Test
+//    public void ShouldReturnValidMenuInput() {
+//        int input = 1;
+//        String inputString = String.valueOf(input);
+//        Library library = new Library();
+//        library.validateInput(inputString);
+//    }
 
     @Test (expected = IllegalArgumentException.class)
     public void ShouldThrowIllegalArgWhenInvalidNumberEntered() {
         int input = 100000;
         String inputString = String.valueOf(input);
-        Library biblioapp = new Library();
-        biblioapp.validateInput(inputString);
+        Library library = new Library();
+        library.validateInput(inputString);
     }
 
     // 1.7
 
     @Test
     public void ShouldCheckOutBook() {
-        Library biblioapp = new Library();
-        biblioapp.stockBooks();
+        Library library = new Library();
+        library.stockBooks();
 
     }
 
     @Test
     public void SizeOfBookListShouldDecreaseByOne() {
-        Library biblioapp = new Library();
-        biblioapp.stockBooks();
-        int originalNumberOfBooks = biblioapp.bookList.size();
-        biblioapp.checkoutBook("The Hobbit");
-        int newNumberOfBooks = biblioapp.bookList.size();
+        Library library = new Library();
+        library.stockBooks();
+        int originalNumberOfBooks = library.bookList.size();
+        library.checkoutBook("The Hobbit");
+        int newNumberOfBooks = library.bookList.size();
         assertEquals(1, originalNumberOfBooks - newNumberOfBooks);
     }
 
     @Test
     public void ShouldShowReturnedBookInList() {
-        Library biblioapp = new Library();
-        biblioapp.stockBooks();
+        Library library = new Library();
+        library.stockBooks();
         Book bookToReturn = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        biblioapp.returnBook(bookToReturn.getName());
-        for (Book book : biblioapp.bookList) {
+        library.returnBook(bookToReturn.getName());
+        for (Book book : library.bookList) {
             if ((book.getName()).equals(bookToReturn.getName())) {
                 assertEquals("The Hobbit", book.getName());
             }
@@ -87,12 +87,12 @@ public class LibraryTests {
 
     @Test
     public void SizeOfBookListShouldIncreaseByOne() {
-        Library biblioapp = new Library();
-        biblioapp.stockBooks();
-        biblioapp.checkoutBook("The Hobbit");
-        int originalNumberOfBooks = biblioapp.bookList.size();
-        biblioapp.returnBook("The Hobbit");
-        int newNumberOfBooks = biblioapp.bookList.size();
+        Library library = new Library();
+        library.stockBooks();
+        library.checkoutBook("The Hobbit");
+        int originalNumberOfBooks = library.bookList.size();
+        library.returnBook("The Hobbit");
+        int newNumberOfBooks = library.bookList.size();
         assertEquals(1, newNumberOfBooks - originalNumberOfBooks);
     }
 }
