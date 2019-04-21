@@ -7,14 +7,9 @@ public class Library {
     public static ArrayList<Book> checkedOutBookList = new ArrayList<Book>();
 
     public static void main(String[] args) {
-        Printer.print(Welcome());
-        Menu.selectOption(Menu.askForUserInput());
         stockCurrentBooks();
-        Menu.populateMenu();
-    }
-
-    public static String Welcome() {
-        return "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!";
+        Printer.printWelcome();
+        Menu.returnToMenu();
     }
 
     public static void placeBookOnShelf(Book book) {
@@ -27,7 +22,7 @@ public class Library {
         placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));
     }
 
-    public static boolean checkoutBook(String bookTitle) {
+    public static boolean checkedoutBook(String bookTitle) {
         for (Book b : bookList) {
             if (b.getTitle().equals(bookTitle)) {
                 bookList.remove(b);
@@ -38,7 +33,7 @@ public class Library {
         return false;
     }
 
-    public static boolean returnBook(String bookTitle) {
+    public static boolean returnedBook(String bookTitle) {
         for (Book b : checkedOutBookList) {
             if (b.getTitle().equals(bookTitle)) {
                 checkedOutBookList.remove(b);
