@@ -33,10 +33,10 @@ public class Menu {
             Menu.selectMenuOption(Menu.askForUserInput());
         } else if (menuOption.equals("2")) {
             promptForCheckoutBook();
-            Printer.printCheckoutMessage(Library.checkedoutBook(bookChoice));
+            Printer.printCheckoutMessage(Library.checkoutBook(bookChoice));
         } else if (menuOption.equals("3")) {
             promptForReturnBook();
-            Printer.printReturnMessage(Library.returnedBook(bookChoice));
+            Printer.printReturnMessage(Library.returnBook(bookChoice));
         } else if (menuOption.equals("0")) {
             Printer.printExit();
             System.exit(0);

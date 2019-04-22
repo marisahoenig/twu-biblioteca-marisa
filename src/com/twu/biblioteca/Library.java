@@ -22,7 +22,7 @@ public class Library {
         placeBookOnShelf(new Book("Becoming", "Michelle Obama", 2018));
     }
 
-    public static boolean checkedoutBook(String bookTitle) {
+    public static boolean checkoutBook(String bookTitle) {
         for (Book b : bookList) {
             if (b.getTitle().equals(bookTitle)) {
                 bookList.remove(b);
@@ -33,7 +33,7 @@ public class Library {
         return false;
     }
 
-    public static boolean returnedBook(String bookTitle) {
+    public static boolean returnBook(String bookTitle) {
         for (Book b : checkedOutBookList) {
             if (b.getTitle().equals(bookTitle)) {
                 checkedOutBookList.remove(b);
