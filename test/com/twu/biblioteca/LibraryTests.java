@@ -2,16 +2,18 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class LibraryTests {
 
     // 1.1
-//    @Test
-//    public void ShouldReturnWelcomeStatementWhenProgramRuns() {
-//        Library library = new Library();
-//        assertEquals("Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!", library.Welcome());
-//    }
+    @Test
+    public void ShouldReturnWelcomeStatementWhenProgramRuns() {
+        Library library = new Library();
+        assertEquals("Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!", library.Welcome());
+//        assertThat(library.welcome(), is(""));
+    }
 
     // 1.2
 //    @Test
