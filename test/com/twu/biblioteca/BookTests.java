@@ -2,7 +2,8 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BookTests {
 
@@ -10,18 +11,18 @@ public class BookTests {
     @Test
     public void CheckBookName() {
         Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        assertEquals("The Hobbit", book1.getTitle());
+        assertThat(book1.getTitle(), is("The Hobbit"));
     }
 
     @Test
     public void CheckBookAuthor() {
         Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        assertEquals("J.R.R. Tolkien", book1.getAuthor());
+        assertThat(book1.getAuthor(), is("J.R.R. Tolkien"));
     }
 
     @Test
     public void CheckBookPublicationDate() {
         Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-        assertEquals(1937, book1.getPublicationDate());
+        assertThat(book1.getPublicationDate(), is(1937));
     }
 }
